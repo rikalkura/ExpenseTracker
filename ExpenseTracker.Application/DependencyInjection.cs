@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using ExpenseTracker.Application.Services.Abstraction;
+using ExpenseTracker.Application.Services.Implementation;
+using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ExpenseTracker.Application;
 
@@ -11,7 +14,13 @@ public static class DependencyInjection
 
         services.AddMediatR(c =>
             c.RegisterServicesFromAssembly(assembly));
-        
+
+        services.AddValidatorsFromAssembly(assembly);
+
+        services.AddScoped<ITokenService, TokenService>();
+        services.AddScoped<ICurrentUserService, CurrentUserService>();
+        services.AddScoped<IAuthService, AuthService>();
+
         return services;
     }
 }
