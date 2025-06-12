@@ -1,6 +1,4 @@
-﻿using ExpenseTracker.Application.Services.Abstraction;
-using ExpenseTracker.Domain.Dto;
-using ExpenseTracker.Domain.Entities;
+﻿using ExpenseTracker.Domain.Entities;
 using ExpenseTracker.Domain.Exceptions;
 using ExpenseTracker.Domain.Extensions;
 using MediatR;
@@ -8,12 +6,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ExpenseTracker.Application.Behaviors.User.Register;
 
-public class RegisterHandler(
-    UserManager<UserEntity> userManager,
-    ITokenService tokenService) :
-    IRequestHandler<RegisterCommand, string>
+public class RegisterHandler(UserManager<UserEntity> userManager) : IRequestHandler<RegisterCommand>
 {
-    public async Task<string> Handle(
+    public async Task Handle(
         RegisterCommand request,
         CancellationToken cancellationToken)
     {
@@ -33,7 +28,5 @@ public class RegisterHandler(
         {
             throw new IdentityOperationException("User register error.");
         }
-
-        return "User was registered successfully!";
     }
 }

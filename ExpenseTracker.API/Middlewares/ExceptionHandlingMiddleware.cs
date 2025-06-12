@@ -14,6 +14,13 @@ public class ExceptionHandlingMiddleware : IMiddleware
         {
             context.Response.ContentType = "application/json";
 
+            if (ex is FluentValidation.ValidationException fvEx)
+            {
+                ex = new ValidationException(
+                    "Validation failed.",
+                    fvEx.Errors.ToList());
+            }
+
             ApiException apiException = ex as ApiException ?? new ApiException();
 
             var response = apiException switch
@@ -24,9 +31,10 @@ public class ExceptionHandlingMiddleware : IMiddleware
                     validationException.ValidationErrors?.Select(e => new ErrorDetail(e.Field, e.Error))),
 
                 IdentityOperationException identityOperationException => new ErrorResponse(
-                   identityOperationException.Title,
-                   identityOperationException.Message,
-                   identityOperationException.IdentityErrors?.Select(e => new ErrorDetail(e.Code, e.Description))),
+                    identityOperationException.Title,
+                    identityOperationException.Message,
+                    identityOperationException.IdentityErrors?.Select(e => new ErrorDetail(e.Code, e.Description))),
+
                 _ => new ErrorResponse(apiException.Title, apiException.Message)
             };
 
@@ -35,4 +43,5 @@ public class ExceptionHandlingMiddleware : IMiddleware
             await context.Response.WriteAsJsonAsync(response);
         }
     }
+
 }

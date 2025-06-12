@@ -1,4 +1,5 @@
-﻿using ExpenseTracker.Application.Behaviors.User.Register;
+﻿using ExpenseTracker.Application.Behaviors.User.Get;
+using ExpenseTracker.Application.Behaviors.User.Register;
 using ExpenseTracker.Application.Services.Abstraction;
 using ExpenseTracker.Domain.Dto;
 using MediatR;
@@ -14,10 +15,8 @@ public static class AuthEndpoints
             .WithTags("Auth");
 
         authEndpoints.MapPost("/register",
-            async (
-                RegisterCommand command, IMediator mediator) =>
+            async (RegisterCommand command, IMediator mediator) =>
             {
-
                 var result = await mediator.Send(command);
 
                 return Results.Ok(result);
@@ -29,11 +28,9 @@ public static class AuthEndpoints
                 IAuthService authService,
                 CancellationToken ct) =>
             {
-
                 var tokenResponse = await authService.LoginAsync(request, ct);
 
                 return Results.Ok(tokenResponse);
             });
-
     }
 }

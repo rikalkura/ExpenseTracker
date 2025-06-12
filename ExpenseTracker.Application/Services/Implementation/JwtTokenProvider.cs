@@ -11,8 +11,8 @@ using System.Text;
 
 namespace ExpenseTracker.Application.Services.Implementation;
 
-public class TokenService(
-    IOptions<TokenConfiguration> jwtOptions) : ITokenService
+public class JwtTokenProvider(
+    IOptions<TokenConfiguration> jwtOptions) : IJwtTokenProvider
 {
     private readonly TokenConfiguration tokenConfig = jwtOptions.Value;
 
@@ -33,7 +33,7 @@ public class TokenService(
     {
         var claims = new[]
         {
-            new Claim   (ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim(ClaimTypes.Email, user.Email ?? ""),
         };
 

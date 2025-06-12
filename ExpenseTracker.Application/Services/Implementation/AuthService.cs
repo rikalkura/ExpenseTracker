@@ -9,7 +9,7 @@ namespace ExpenseTracker.Application.Services.Implementation;
 
 public class AuthService(
     UserManager<UserEntity> userManager,
-    ITokenService tokenService,
+    IJwtTokenProvider tokenService,
     ITokenRepository tokenRepository) 
     : IAuthService
 {

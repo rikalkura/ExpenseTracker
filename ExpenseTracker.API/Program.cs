@@ -24,11 +24,17 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseRouting();
 
+app.UseCors();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseMiddleware<CurrentUserMiddleware>();
 
 app.MapAuthEndpoints();
+app.MapUserEndpoints();
 
 app.Run();
+
+
+//???????? auth service + ??????? IRequest<string>

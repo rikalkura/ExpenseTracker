@@ -1,6 +1,8 @@
-﻿using ExpenseTracker.Application.Services.Abstraction;
+﻿using ExpenseTracker.Application.Pipelines;
+using ExpenseTracker.Application.Services.Abstraction;
 using ExpenseTracker.Application.Services.Implementation;
 using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ExpenseTracker.Application;
@@ -17,7 +19,11 @@ public static class DependencyInjection
 
         services.AddValidatorsFromAssembly(assembly);
 
-        services.AddScoped<ITokenService, TokenService>();
+        services.AddTransient(
+          typeof(IPipelineBehavior<,>),
+          typeof(ValidationPipelineBehavior<,>));
+
+        services.AddScoped<IJwtTokenProvider, JwtTokenProvider>();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
         services.AddScoped<IAuthService, AuthService>();
 
