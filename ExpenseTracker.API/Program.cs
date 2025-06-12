@@ -1,6 +1,8 @@
 using ExpenseTracker.API;
-using ExpenseTracker.Infrastructure;
+using ExpenseTracker.API.Endpoints;
+using ExpenseTracker.API.Middlewares;
 using ExpenseTracker.Application;
+using ExpenseTracker.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +20,21 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
+app.UseRouting();
+
+app.UseCors();
+
+app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseMiddleware<CurrentUserMiddleware>();
+
+app.MapAuthEndpoints();
+app.MapUserEndpoints();
 
 app.Run();
+
+
+//???????? auth service + ??????? IRequest<string>

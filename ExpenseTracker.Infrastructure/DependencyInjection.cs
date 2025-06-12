@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ExpenseTracker.Domain.Interfaces.Repositories;
+using ExpenseTracker.Infrastructure.Repositories.Common;
+using ExpenseTracker.Infrastructure.Repositories.Implementation;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,6 +15,9 @@ public static class DependencyInjection
         services.AddDbContext<AppDbContext>(
             options => options.UseSqlServer(
                 configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddScoped<ITokenRepository, TokenRepository>();
+        services.AddScoped(typeof(IRepository<>), typeof(EFCoreRepository<>));
 
         return services;
     }

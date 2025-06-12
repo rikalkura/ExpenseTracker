@@ -2,9 +2,9 @@
 
 public class BaseEntity
 {
-    public BaseEntity(Guid id)
+    public BaseEntity()
     {
-        Id = id;
+        Id = Guid.NewGuid();
     }
 
     public Guid Id { get; private set; }
