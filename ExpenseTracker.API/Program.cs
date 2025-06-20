@@ -33,8 +33,6 @@ app.UseMiddleware<CurrentUserMiddleware>();
 
 app.MapAuthEndpoints();
 app.MapUserEndpoints();
+app.MapCategoryEndpoints();
 
 app.Run();
-
-
-//???????? auth service + ??????? IRequest<string>

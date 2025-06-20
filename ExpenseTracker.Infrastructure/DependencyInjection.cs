@@ -18,6 +18,7 @@ public static class DependencyInjection
 
         services.AddScoped<ITokenRepository, TokenRepository>();
         services.AddScoped(typeof(IRepository<>), typeof(EFCoreRepository<>));
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
 
         return services;
     }

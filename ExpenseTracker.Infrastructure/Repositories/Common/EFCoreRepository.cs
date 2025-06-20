@@ -1,6 +1,9 @@
-﻿using ExpenseTracker.Domain.Entities;
+﻿using Ardalis.Specification;
+using Ardalis.Specification.EntityFrameworkCore;
+using ExpenseTracker.Domain.Entities;
 using ExpenseTracker.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace ExpenseTracker.Infrastructure.Repositories.Common;
 
@@ -14,9 +17,24 @@ public class EFCoreRepository<TEntity>(
     {
         return await _dbSet.ToListAsync();
     }
+
     public Task<TEntity?> GetByIdAsync(Guid id)
     {
         return _dbSet.FirstOrDefaultAsync(e => e.Id == id);
+    }
+    public async Task<TEntity?> FirstOrDefaultAsync(ISpecification<TEntity> spec)
+    {
+        return await _dbSet.WithSpecification(spec).FirstOrDefaultAsync();
+    }
+
+    public async Task<IEnumerable<TEntity>> ListAsync(ISpecification<TEntity> spec)
+    {
+        return await _dbSet.WithSpecification(spec).ToListAsync();
+    }
+
+    public Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate)
+    {
+        return _dbSet.AnyAsync(predicate);
     }
 
     public void Add(TEntity entity)
