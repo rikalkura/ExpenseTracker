@@ -33,9 +33,9 @@ public static class UserEndpoints
             {
 
                 command.Id = id;
-                var result = await mediator.Send(command);
+                await mediator.Send(command);
 
-                return Results.Ok(result);
+                return Results.Ok();
             });
     }
 }

@@ -7,9 +7,9 @@ namespace ExpenseTracker.Application.Behaviors.User.Update;
 
 public class UpdateUserInfoHandler(
     UserManager<UserEntity> userManager) 
-    : IRequestHandler<UpdateUserInfoCommand, string>
+    : IRequestHandler<UpdateUserInfoCommand>
 {
-    public async Task<string> Handle(UpdateUserInfoCommand request, CancellationToken cancellationToken)
+    public async Task Handle(UpdateUserInfoCommand request, CancellationToken cancellationToken)
     {
         var userInfo = await userManager.FindByIdAsync(request.Id.ToString());
 
@@ -23,7 +23,5 @@ public class UpdateUserInfoHandler(
 
 
         var result = await userManager.UpdateAsync(userInfo);
-
-        return "User was updated successfully!";
     }
 }

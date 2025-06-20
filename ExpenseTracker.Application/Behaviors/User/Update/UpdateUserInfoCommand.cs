@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace ExpenseTracker.Application.Behaviors.User.Update;
 
-public class UpdateUserInfoCommand : IRequest<string>
+public class UpdateUserInfoCommand : IRequest
 {
     [JsonIgnore]
     public string Id { get; set; }
