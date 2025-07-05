@@ -4,13 +4,15 @@ using ExpenseTracker.Domain.Exceptions;
 
 namespace ExpenseTracker.Domain.Entities;
 
-public class CategoryEntity : BaseEntity
+public class CategoryEntity : BaseEntity<Guid>
 {
     public CategoryEntity(
         CategoryType type,
         string name,
         Guid userId)
     {
+        Id = Guid.NewGuid();
+     
         EnsureNameIsValid(name);
 
         Guard.IsFalse(type.IsInEnum(), new ValidationException("Invalid category type."));

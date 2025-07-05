@@ -34,5 +34,7 @@ app.UseMiddleware<CurrentUserMiddleware>();
 app.MapAuthEndpoints();
 app.MapUserEndpoints();
 app.MapCategoryEndpoints();
+app.MapTransactionEndpoints();
+app.MapUserPageEndpoints();
 
 app.Run();

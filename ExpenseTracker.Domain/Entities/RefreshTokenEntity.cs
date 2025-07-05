@@ -1,11 +1,12 @@
 ﻿namespace ExpenseTracker.Domain.Entities;
 
-public class RefreshTokenEntity : BaseEntity
+public class RefreshTokenEntity : BaseEntity<Guid>
 {
     public RefreshTokenEntity(
         string token,
         Guid userId)
     {
+        Id = Guid.NewGuid();
         Token = token;
         ExpiryDate = DateTime.UtcNow.AddHours(24);
         UserId = userId;

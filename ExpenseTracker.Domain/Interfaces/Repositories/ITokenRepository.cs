@@ -2,4 +2,4 @@
 
 namespace ExpenseTracker.Domain.Interfaces.Repositories;
 
-public interface ITokenRepository : IRepository<RefreshTokenEntity> { };
+public interface ITokenRepository : IRepository<RefreshTokenEntity> { }

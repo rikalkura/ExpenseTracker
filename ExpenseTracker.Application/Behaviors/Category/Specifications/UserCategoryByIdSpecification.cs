@@ -3,11 +3,10 @@ using ExpenseTracker.Domain.Entities;
 
 namespace ExpenseTracker.Application.Behaviors.Category.Specifications;
 
-public class UserCategoryByIdSpec : Specification<CategoryEntity>
+public class UserCategoryByIdSpecification : SingleResultSpecification<CategoryEntity>
 {
-    public UserCategoryByIdSpec(Guid categoryId, Guid userId)
+    public UserCategoryByIdSpecification(Guid categoryId, Guid userId)
     {
         Query.Where(c => c.Id == categoryId && c.UserId == userId);
     }
-
 }

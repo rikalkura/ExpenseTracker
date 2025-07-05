@@ -2,8 +2,4 @@
 
 namespace ExpenseTracker.Domain.Dto;
 
-public class CategoryDto
-{
-    public CategoryType Type { get; set; }
-    public string Name { get; set; }
-}
+public record CategoryDto (Guid Id, CategoryType Type, string Name, Guid? UserId);

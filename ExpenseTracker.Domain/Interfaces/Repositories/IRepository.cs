@@ -4,17 +4,19 @@ using System.Linq.Expressions;
 
 namespace ExpenseTracker.Domain.Interfaces.Repositories;
 public interface IRepository<TEntity>
-    where TEntity : BaseEntity
+    where TEntity : class, IEntity
 {
-    Task<TEntity?> GetByIdAsync(Guid id);
+    Task<IEnumerable<TEntity>> ListAsync(CancellationToken cancellationToken);
 
-    Task<IEnumerable<TEntity>> GetAllAsync();
+    Task<TEntity?> FirstOrDefaultAsync(ISingleResultSpecification<TEntity> spec, CancellationToken cancellationToken);
+   
+    Task<TEntity> FirstAsync(ISingleResultSpecification<TEntity> spec, CancellationToken cancellationToken);
+   
+    Task<IEnumerable<TEntity>> ListAsync(ISpecification<TEntity> spec, CancellationToken cancellationToken);
 
-    Task<TEntity?> FirstOrDefaultAsync(ISpecification<TEntity> spec);
+    Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
 
-    Task<IEnumerable<TEntity>> ListAsync(ISpecification<TEntity> spec);
-
-    Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate);
+    Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
 
     void Add(TEntity entity);
 
@@ -22,5 +24,5 @@ public interface IRepository<TEntity>
 
     void Update(TEntity entity);
 
-    Task SaveChangesAsync();
+    Task SaveChangesAsync(CancellationToken cancellationToken);
 }

@@ -1,0 +1,230 @@
+.categories-main {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f9f9ff, #e0e5ff);
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.categories-header {
+  max-width: 900px;
+  width: 100%;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.back-btn {
+  background-color: transparent;
+  border: 2px solid #3f51b5;
+  color: #3f51b5;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.back-btn:hover {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.add-btn {
+  background: linear-gradient(90deg, #3f51b5, #536dfe);
+  border: none;
+  color: white;
+  padding: 10px 35px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(63, 81, 181, 0.4);
+  transition: transform 0.2s;
+}
+.add-btn:hover {
+  transform: translateY(-3px);
+}
+
+.page-title {
+  text-align: center;
+  color: #3f51b5;
+  margin-bottom: 3rem;
+  font-weight: 700;
+  font-size: 2.5rem;
+  text-shadow: 0 0 8px rgba(63, 81, 181, 0.7);
+}
+
+.category-section {
+  margin-bottom: 3rem;
+}
+
+.category-title {
+  text-align: center;
+  color: #3f51b5;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 5px rgba(63, 81, 181, 0.7);
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.category-card {
+  min-width: 280px;
+  max-width: 320px;
+  background-color: white;
+  color: #333;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 30px rgba(63, 81, 181, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 130px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.category-card:hover {
+  transform: scale(1.05);
+}
+
+.dropdown-wrapper {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+
+.category-menu-btn {
+  font-weight: bold;
+  font-size: 1.5rem;
+  border: none;
+  background-color: transparent;
+  width: 2.5rem;
+  height: 2rem;
+  line-height: 1.5rem;
+  cursor: pointer;
+  color: #3f51b5;
+}
+.category-menu-btn:hover {
+  color: #1a237e;
+}
+
+.readonly-icon {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-size: 1rem;
+  color: #bbb;
+}
+
+.empty-list-text {
+  font-style: italic;
+  color: #777;
+  width: 100%;
+  text-align: center;
+}
+
+.categories-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(10, 10, 30, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal {
+  position: relative;
+  background-color: white;
+  color: #333;
+  border-radius: 20px;
+  padding: 2rem;
+  /* видаляємо width: 100%; */
+    min-height: 200px; /* додай для перевірки */
+  max-width: 420px;
+  min-width: 300px; /* додатково можна задати мінімальну ширину */
+  box-shadow: 0 12px 35px rgba(63, 81, 181, 0.25);
+  z-index: 2100;
+}
+
+
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #3f51b5;
+  padding-bottom: 0.5rem;
+}
+.modal-header h5 {
+  color: #3f51b5;
+  font-weight: 700;
+}
+.modal-header button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  color: #3f51b5;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0;
+  user-select: none;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 18px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  outline: none;
+  margin-bottom: 1rem;
+}
+.input-field:focus {
+  box-shadow: 0 0 15px rgba(63, 81, 181, 0.3);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.cancel-btn {
+  padding: 10px 30px;
+  border-radius: 30px;
+  border: 2px solid #3f51b5;
+  background-color: transparent;
+  color: #3f51b5;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cancel-btn:hover {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.confirm-btn {
+  padding: 10px 30px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(90deg, #3f51b5, #536dfe);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(63, 81, 181, 0.4);
+}
+.confirm-btn:hover {
+  transform: translateY(-3px);
+}

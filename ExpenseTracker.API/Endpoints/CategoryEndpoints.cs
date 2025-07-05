@@ -1,5 +1,6 @@
 ﻿using ExpenseTracker.API.Requests.Category;
 using ExpenseTracker.Application.Behaviors.Category.Create;
+using ExpenseTracker.Application.Behaviors.Category.Delete;
 using ExpenseTracker.Application.Behaviors.Category.Get;
 using ExpenseTracker.Application.Behaviors.Category.Update;
 using ExpenseTracker.Application.Behaviors.User.Update;
@@ -13,7 +14,6 @@ public static class CategoryEndpoints
     public static void MapCategoryEndpoints(this WebApplication app)
     {
         var categoryEndpoints = app.MapGroup("/category")
-            .AllowAnonymous()
             .WithTags("Category");
 
         categoryEndpoints.MapPost("", async(
@@ -47,5 +47,16 @@ public static class CategoryEndpoints
                return Results.Ok();
            });
 
+        categoryEndpoints.MapDelete("/{id}",
+            async (
+                Guid id,
+                IMediator mediator) =>
+            {
+                var command = new DeleteCategoryCommand(id);
+
+                await mediator.Send(command);
+
+                return Results.Ok();
+            });
     }
 }
