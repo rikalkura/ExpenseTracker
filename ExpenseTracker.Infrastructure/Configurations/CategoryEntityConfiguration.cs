@@ -26,5 +26,9 @@ public class CategoryEntityConfiguration : IEntityTypeConfiguration<CategoryEnti
         builder.HasOne<UserEntity>()
             .WithMany()
             .HasForeignKey(c => c.UserId);
+
+        builder.HasMany<TransactionEntity>()
+            .WithOne()
+            .HasForeignKey(c => c.CategoryId);
     }
 }

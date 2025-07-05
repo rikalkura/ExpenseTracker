@@ -1,0 +1,214 @@
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px; /* трохи вище для просторості */
+  background: linear-gradient(135deg, #e0e5ff, #a3b1ff);
+  padding: 0 3rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(63, 81, 181, 0.3);
+  color: #3f51b5;
+  font-family: 'Poppins', sans-serif;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.75rem;
+  cursor: pointer;
+  user-select: none;
+  color: #3f51b5;
+  text-shadow: 0 1px 3px rgba(63, 81, 181, 0.4);
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: #536dfe;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  color: #3f51b5;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  box-shadow: inset 0 0 0 0 transparent;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  background-color: #536dfe;
+  color: white;
+  box-shadow: 0 4px 15px rgba(83, 109, 254, 0.6);
+  font-weight: 700;
+}
+
+.btn-logout {
+  background-color: #e53935; /* насичений червоний */
+  border: none;
+  padding: 10px 24px;
+  border-radius: 25px;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(229, 57, 53, 0.5);
+  transition: background-color 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-logout:hover {
+  background-color: #b71c1c; /* темніший червоний при ховері */
+  box-shadow: 0 6px 12px rgba(183, 28, 28, 0.7);
+}
+
+.btn-logout:active {
+  background-color: #8c1515; /* ще темніший при натисканні */
+  box-shadow: none;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.8rem;
+  cursor: pointer;
+  user-select: none;
+  color: #3f51b5;
+  display: flex;
+  align-items: center;
+  text-shadow: 0 1px 3px rgba(63, 81, 181, 0.4);
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: #536dfe;
+}
+
+.logo svg {
+  flex-shrink: 0;
+  stroke: #3f51b5;
+  transition: stroke 0.3s ease;
+}
+
+.logo:hover svg {
+  stroke: #536dfe;
+}
+/*-------------------------------------------------------------------------------------------*/
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent; /* без затемнення */
+  backdrop-filter: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-box {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  animation: fade-in 0.25s ease-out;
+}
+
+.modal-box .btn {
+  min-width: 110px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border: none;
+  user-select: none;
+  outline: none;
+}
+
+/* Контейнер кнопок з gap 2rem */
+.modal-box .d-flex.justify-content-end.mt-4 {
+  display: flex;
+  justify-content: center; /* вирівнюємо по центру */
+  gap: 2rem; /* відступ між кнопками */
+  margin-top: 1rem;
+}
+
+
+/* Кнопка Cancel — прозора з обводкою */
+.modal-box .btn-outline-secondary {
+  background-color: transparent;
+  color: #3f51b5;
+  border: 2.5px solid #3f51b5;
+  box-shadow: inset 0 0 0 0 transparent;
+}
+
+.modal-box .btn-outline-secondary:hover {
+  background-color: #536dfe;
+  color: #fff;
+  box-shadow: 0 6px 25px rgba(83, 109, 254, 0.7);
+}
+
+/* Кнопка Logout — насичений червоний */
+.modal-box .btn-danger {
+  background-color: #e53935;
+  color: #fff;
+  box-shadow: 0 8px 28px rgba(229, 57, 53, 0.7);
+}
+
+.modal-box .btn-danger:hover {
+  background-color: #b71c1c;
+  box-shadow: 0 10px 30px rgba(183, 28, 28, 0.9);
+}
+
+.modal-box .btn-danger:active {
+  background-color: #8c1515;
+  box-shadow: none;
+}
+
+/* Анімація появи */
+@keyframes fade-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.25s ease-in-out;
+}

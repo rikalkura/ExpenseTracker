@@ -18,6 +18,6 @@ public class CreateCategoryHandler(
             currentUserService.Id);
 
         categoryRepository.Add(category);
-        await categoryRepository.SaveChangesAsync();
+        await categoryRepository.SaveChangesAsync(cancellationToken);
     }
 }

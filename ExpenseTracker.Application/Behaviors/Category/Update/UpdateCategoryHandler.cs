@@ -16,7 +16,9 @@ public class UpdateCategoryHandler(
 {
     public async Task Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
     {
-        var category = await categoryRepository.FirstOrDefaultAsync(new UserCategoryByIdSpec(request.Id, currentUserService.Id));
+        var category = await categoryRepository.FirstOrDefaultAsync(
+            new UserCategoryByIdSpecification(request.Id, currentUserService.Id),
+            cancellationToken);
 
         if (category is null) 
         {
@@ -25,21 +27,22 @@ public class UpdateCategoryHandler(
 
         category.SetName(request.Name);
 
-        await EnsureIsUniqueAsync(category);
+        await EnsureIsUniqueAsync(category, cancellationToken);
 
         categoryRepository.Update(category);
 
-        await categoryRepository.SaveChangesAsync();
+        await categoryRepository.SaveChangesAsync(cancellationToken);
     }
 
-    private async Task EnsureIsUniqueAsync(CategoryEntity category)
+    private async Task EnsureIsUniqueAsync(CategoryEntity category, CancellationToken cancellationToken)
     {
         var userId = currentUserService.Id;
 
         var isExist = await categoryRepository.AnyAsync(c =>
            (c.UserId == userId || c.UserId == null) &&
            c.Type == category.Type &&
-           EF.Functions.Like(c.Name, category.Name));
+           EF.Functions.Like(c.Name, category.Name),
+           cancellationToken);
 
         if (isExist)
         {

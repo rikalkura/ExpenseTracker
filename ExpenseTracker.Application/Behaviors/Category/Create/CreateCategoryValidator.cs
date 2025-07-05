@@ -16,7 +16,7 @@ public class CreateCategoryValidator : AbstractValidator<CreateCategoryCommand>
             {
                 var userId = currentUserService.Id;
 
-                var existingCategories = await categoryRepository.GetAllAsync();
+                var existingCategories = await categoryRepository.ListAsync(cancellationToken);
 
                 return !existingCategories.Any(c =>
                     c.UserId == userId &&

@@ -1,0 +1,161 @@
+.container {
+  max-width: 900px;
+  margin: 0px auto 4rem;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+
+.text-primary {
+  color: #3f51b5 !important;
+}
+
+h2.text-primary {
+  font-weight: 700;
+  font-size: 2rem;
+  text-shadow: 0 0 5px rgba(63, 81, 181, 0.7);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 2px solid #3f51b5;
+  color: #3f51b5;
+  font-weight: 600;
+  padding: 10px 25px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.btn-secondary:hover:not(:disabled) {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.table {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(63, 81, 181, 0.15);
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  vertical-align: middle !important;
+  text-align: center;
+  padding: 1rem 0.75rem;
+  font-size: 1rem;
+}
+
+.table thead th {
+  background-color: #f0f3ff;
+  color: #3f51b5;
+  font-weight: 700;
+  border-bottom: 2px solid #3f51b5;
+  text-shadow: 0 0 4px rgba(63, 81, 181, 0.5);
+}
+
+.table tbody tr:hover {
+  background-color: #e6e9ff;
+  transition: background-color 0.3s ease;
+  cursor: default;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.text-muted {
+  font-style: italic;
+  color: #777;
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+}
+
+.d-flex.justify-content-center.gap-3.mt-3 {
+  margin-top: 2rem;
+}
+
+.btn-outline-primary {
+  border-radius: 30px;
+  font-weight: 600;
+  padding: 10px 30px;
+  border: 2px solid #3f51b5;
+  color: #3f51b5;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-outline-primary:hover:not(:disabled) {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.btn-outline-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+span {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #3f51b5;
+  padding: 0.5rem 1rem;
+  user-select: none;
+}
+
+.logout-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  padding: 10px 30px;
+  font-weight: 600;
+  border-radius: 30px;
+  background-color: #dc3545;
+  border: 2px solid #dc3545;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #c82333;
+  border-color: #c82333;
+}
+
+/* Нові стилі для layout сторінки з балансом і транзакціями */
+.main-layout {
+  display: flex;
+  margin-top: 100px;
+  padding: 1rem 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.transactions-container {
+  flex: 0 0 700px;
+}
+
+/* Стилі для кнопки створення транзакції */
+.create-transaction-btn {
+  border-radius: 30px;
+  font-weight: 600;
+  padding: 8px 20px;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-transaction-btn:hover {
+  background-color: #303f9f;
+}
+
+.d-flex.justify-content-between.align-items-center.mb-4 > button {
+  margin-left: 0.5rem;
+}

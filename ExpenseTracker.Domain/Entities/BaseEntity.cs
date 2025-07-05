@@ -1,11 +1,8 @@
 ﻿namespace ExpenseTracker.Domain.Entities;
 
-public class BaseEntity
+public abstract class BaseEntity<TId> : IEntity
 {
-    public BaseEntity()
-    {
-        Id = Guid.NewGuid();
-    }
-
-    public Guid Id { get; private set; }
+   public TId Id { get; set; }
 }
+
+public interface IEntity { }

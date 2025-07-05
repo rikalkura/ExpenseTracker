@@ -28,7 +28,7 @@ public class LoginHandler(
             user.Id);
 
         tokenRepository.Add(refreshTokenEntity);
-        await tokenRepository.SaveChangesAsync();
+        await tokenRepository.SaveChangesAsync(cancellationToken);
 
         return tokenDto;
     }

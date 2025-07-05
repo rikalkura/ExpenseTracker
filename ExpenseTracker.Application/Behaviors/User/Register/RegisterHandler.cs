@@ -1,12 +1,15 @@
 ﻿using ExpenseTracker.Domain.Entities;
 using ExpenseTracker.Domain.Exceptions;
 using ExpenseTracker.Domain.Extensions;
+using ExpenseTracker.Domain.Interfaces.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
 namespace ExpenseTracker.Application.Behaviors.User.Register;
 
-public class RegisterHandler(UserManager<UserEntity> userManager) : IRequestHandler<RegisterCommand>
+public class RegisterHandler(
+    UserManager<UserEntity> userManager,
+    IUserPageRepository userPageRepository) : IRequestHandler<RegisterCommand>
 {
     public async Task Handle(
         RegisterCommand request,
@@ -28,5 +31,10 @@ public class RegisterHandler(UserManager<UserEntity> userManager) : IRequestHand
         {
             throw new IdentityOperationException("User register error.");
         }
+
+        var userPage = UserPageEntity.Empty(newUser.Id);
+
+        userPageRepository.Add(userPage);
+        await userPageRepository.SaveChangesAsync(cancellationToken);
     }
 }

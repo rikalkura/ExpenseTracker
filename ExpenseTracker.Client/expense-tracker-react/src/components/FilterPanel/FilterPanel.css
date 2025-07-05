@@ -1,0 +1,4 @@
+.filter-panel input,
+.filter-panel select {
+  min-width: 150px;
+}

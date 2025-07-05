@@ -73,9 +73,11 @@ namespace ExpenseTracker.Infrastructure.Migrations
 
             modelBuilder.Entity("ExpenseTracker.Domain.Entities.TransactionEntity", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
@@ -83,11 +85,16 @@ namespace ExpenseTracker.Infrastructure.Migrations
                     b.Property<decimal>("BalanceBeforeTransaction")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("CategoryId")
+                    b.Property<Guid?>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
 
                     b.Property<Guid>("UserPageId")
                         .HasColumnType("uniqueidentifier");
@@ -196,17 +203,18 @@ namespace ExpenseTracker.Infrastructure.Migrations
 
             modelBuilder.Entity("ExpenseTracker.Domain.Entities.TransactionEntity", b =>
                 {
-                    b.HasOne("ExpenseTracker.Domain.Entities.CategoryEntity", null)
+                    b.HasOne("ExpenseTracker.Domain.Entities.CategoryEntity", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("ExpenseTracker.Domain.Entities.UserPageEntity", null)
                         .WithMany()
                         .HasForeignKey("UserPageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("ExpenseTracker.Domain.Entities.UserPageEntity", b =>

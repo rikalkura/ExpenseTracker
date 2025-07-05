@@ -1,0 +1,66 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f9f9ff, #e0e5ff);
+  color: #333;
+}
+
+a {
+  color: #3f51b5;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.btn-primary {
+  border-radius: 30px !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  background: linear-gradient(90deg, #3f51b5, #536dfe) !important;
+  border: none !important;
+  color: #fff !important;
+  padding: 0.5rem 1rem !important;
+  transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+}
+
+input, select {
+  border-radius: 30px !important;
+  border: 1px solid #ccc !important;
+  background-color: #fafafa !important;
+  font-size: 1rem !important;
+  padding: 10px 15px 10px 40px !important;
+  width: 100% !important;
+  transition: box-shadow 0.3s;
+}
+
+input:focus, select:focus {
+  box-shadow: 0 0 15px rgba(63, 81, 181, 0.3) !important;
+  outline: none !important;
+}
+
+.container {
+  max-width: 410px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0px 8px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.login-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: #3f51b5;
+}
